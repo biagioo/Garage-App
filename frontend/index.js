@@ -2,8 +2,17 @@ const baseUrl = "http://localhost:3000"
 const carsUrl = `${baseUrl}/cars`
 const usersUrl = `${baseUrl}/users`
 const mainHTML = document.querySelector('main')
+const addCarBtn = document.querySelector('.add-car-btn')
 
-document.addEventListener("DOMContentLoaded", () => loadUsers())
+document.addEventListener("DOMContentLoaded", () => {
+    loadUsers()
+    signupForm()
+    addCarBtn.addEventListener('click', e =>{
+        e.preventDefault()
+        renderCarForm()
+    })
+
+})
 
 const loadUsers = () => {
     fetch(usersUrl) 
@@ -11,19 +20,19 @@ const loadUsers = () => {
     .then(json => { 
         json.forEach(user => renderUser(user)
     )}) 
-    signupForm()
 }
 
 const renderUser = (user) => {
     // console.log(user)
     const div = document.createElement("div")
     const h3 = document.createElement("h4") 
-
+    
     div.setAttribute("class", "garage")
 
-    h3.innerText = user.username
+    h3.innerText = `Username: ${user.username}`
     h3.setAttribute('id', user.id)
 
+    
     div.appendChild(h3)
     mainHTML.appendChild(div)
 
@@ -80,4 +89,24 @@ const createUser = (e) => {
 }
 
 
-  
+const renderCarForm = () =>{
+    console.log(mainHTML.innerHTML)
+    
+    mainHTML.innerHTML = `<form action="/action_page.php" method="get">
+    <label for="year">Year: </label>
+    <input type="text" id="year" name="year"></input>
+    <br></br>
+    <label for="make">Make: </label>
+    <input type="text" id="make" name="make"></input>
+    <br></br>
+    <label for="model">Model: </label>
+    <input type="text" id="model" name="model"></input>
+    <br></br>
+    <label for="trim">Trim: </label>
+    <input type="text" id="trim" name="trim"></input>
+    <br></br>
+    <input type="submit" value="Submit"></input>
+  </form>`
+}
+
+
