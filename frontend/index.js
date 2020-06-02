@@ -64,5 +64,20 @@ const signupForm = () =>{
 
 
 const createUser = (e) => {
-    console.log(e.target.username.value)
+    let newUser ={
+        username: e.target.username.value
+    }
+
+    fetch(usersUrl, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newUser)
+    })
+    .then(resp => resp.json())
+    .then(renderUser(user))
 }
+
+
+  
