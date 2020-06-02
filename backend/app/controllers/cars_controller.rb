@@ -11,7 +11,17 @@ class CarsController < ApplicationController
     end
 
     def create 
-
+        user = User.find_by(id: car_params[:user_id])
+        if user
+            new_car = user.cars.new(car_params)
+            if new_car.save
+                render json: car
+            else
+                render json: {errors: car.errors.full_messages}
+            end
+        else 
+            render json: {errors: user.errors.full_messages}
+        end
     end
 
     private
