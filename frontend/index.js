@@ -4,6 +4,8 @@ const usersUrl = `${baseUrl}/users`
 const mainHTML = document.querySelector('main')
 const addCarBtn = document.querySelector('.add-car-btn')
 
+let users = [] 
+
 document.addEventListener("DOMContentLoaded", () => {
     loadUsers()
     signupForm()
@@ -19,7 +21,10 @@ const loadUsers = () => {
     .then(resp => resp.json())
     .then(json => { 
         json.forEach(user => renderUser(user)
-    )}) 
+        ) 
+        users = json
+    }
+    ) 
 }
 
 const renderUser = (user) => {
@@ -88,27 +93,13 @@ const createUser = (e) => {
     .then(userObj => renderUser(userObj))
 }
 
-// const loadAllUsersForForm = () => {
-//     fetch(usersUrl) 
-//     .then(resp => resp.json())
-//     .then(json => { 
-//         json.forEach(user => selectUserForm(user)
-//     )}) 
-    
-// }
-
-// let selectUserForm = (user) =>{
-//    return <option user_id="${user.id}" value="${user.id}">${user.username}</option>  
-// }
 
 const renderCarForm = () =>{
-    // loadAllUsersForForm()
     
-
-    mainHTML.innerHTML = `<form action="/action_page.php" method="get">
-    <label for="users">Select the user you'd like to add a car to: </label>
-    <select name="users" id="select-users-id"></select>
-    
+    mainHTML.innerHTML = `<form class="new-car">
+    <label for="users"> Select the user you'd like to add a car to: </label>
+    <select name="users" id="select-users-id">
+    ${users.map(user => `<option value=${user.id}> ${user.username} </option>`)}
     </select>
     <br></br>
     <label for="year">Year: </label>
@@ -123,10 +114,25 @@ const renderCarForm = () =>{
     <label for="trim">Trim: </label>
     <input type="text" id="trim" name="trim"></input>
     <br></br>
-    <input type="submit" value="Submit"></input>
+    <button> Add New Car</button>
   </form>`
 
+    const newCarForm = document.querySelector('.new-car')
+    newCarForm.addEventListener('submit', e =>{
+        e.preventDefault()
+        console.log(e.target.values)
+    })
+   
+   
+    // newCarForm.querySelector('button').addEventListener('click', event => {
+    //     event.preventDefault()
+    //     let form = event.target.parentElement
+    //     let formInputs = form.querySelectorAll('input')
+    //     console.log(formInputs)
+    //     console.log(form)
 
+
+    // })
 }
 
 
