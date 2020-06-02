@@ -37,8 +37,8 @@ const renderUser = (user) => {
 
 const renderCars = (car) => {
     const h3 = document.getElementById(`${car.user_id}`)
+    
     const ul = document.createElement("ul")  
-    console.log(car.year)
     const liMake = document.createElement('li')
     const liModel = document.createElement('li')
     const liYear = document.createElement('li')
@@ -56,4 +56,14 @@ const renderCars = (car) => {
     
     h3.appendChild(ul)
     
+}
+
+const login = () =>{
+    const form = document.getElementById("login-field")
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        debugger
+        console.log(e)
+        form.reset()
+      })
 }
