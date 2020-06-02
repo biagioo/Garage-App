@@ -114,13 +114,18 @@ const renderCarForm = () =>{
     <label for="trim">Trim: </label>
     <input type="text" id="trim" name="trim"></input>
     <br></br>
-    <button> Add New Car</button>
+    <input type="submit" name="submit" value="Add New Car" class="submit">
   </form>`
 
     const newCarForm = document.querySelector('.new-car')
     newCarForm.addEventListener('submit', e =>{
         e.preventDefault()
-        console.log(e.target.values)
+        createNewCar(e)
+        console.log(e.target.users.value)
+        console.log(e.target.year.value)
+        console.log(e.target.make.value)
+        console.log(e.target.model.value)
+        console.log(e.target.trim.value)
     })
    
    
@@ -130,11 +135,41 @@ const renderCarForm = () =>{
     //     let formInputs = form.querySelectorAll('input')
     //     console.log(formInputs)
     //     console.log(form)
-
-
     // })
 }
 
 
+const createNewCar = e =>{
+    let newCar = { 
+        user_id: e.target.users.value, 
+        year: e.target.year.value,
+        make: e.target.make.value,
+        model: e.target.model.value,
+        trim: e.target.trim.value
+    }
 
+    fetch(carsUrl, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newCar)
+    })
+    .then(resp => resp.json())
+    .then(carObj => console.log(carObj))
+}
+
+// const renderCar = carObj =>{
+//     const div = document.createElement("div")
+//     const h3 = document.createElement("h4") 
+    
+//     div.setAttribute("class", "garage")
+
+//     h3.innerText = `Username: ${user.username}`
+//     h3.setAttribute('id', user.id)
+
+    
+//     div.appendChild(h3)
+//     mainHTML.appendChild(div)
+// }
 
