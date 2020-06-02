@@ -76,7 +76,7 @@ const createUser = (e) => {
         body: JSON.stringify(newUser)
     })
     .then(resp => resp.json())
-    .then(renderUser(user))
+    .then(userObj => renderUser(userObj))
 }
 
 
