@@ -10,4 +10,8 @@ class UsersController < ApplicationController
         render json: user
     end
 
+    def create 
+        
+    end
+
 end

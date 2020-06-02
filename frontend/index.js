@@ -11,26 +11,21 @@ const loadUsers = () => {
     .then(json => { 
         json.forEach(user => renderUser(user)
     )}) 
+    signupForm()
 }
 
 const renderUser = (user) => {
     // console.log(user)
     const div = document.createElement("div")
-    const h3 = document.createElement("h4")
-    // const ul = document.createElement("ul")  
+    const h3 = document.createElement("h4") 
 
     div.setAttribute("class", "garage")
 
     h3.innerText = user.username
     h3.setAttribute('id', user.id)
 
-    // ul.setAttribute("id", user.id)
-
     div.appendChild(h3)
-    // div.appendChild(ul)
-
     mainHTML.appendChild(div)
-
 
     user.cars.forEach(car => renderCars(car))
 }
@@ -58,12 +53,16 @@ const renderCars = (car) => {
     
 }
 
-const login = () =>{
-    const form = document.getElementById("login-field")
+const signupForm = () =>{
+    const form = document.querySelector(".add-user")
     form.addEventListener('submit', e => {
         e.preventDefault()
-        debugger
-        console.log(e)
+        createUser(e)
         form.reset()
-      })
+    })
+}
+
+
+const createUser = (e) => {
+    console.log(e.target.username.value)
 }

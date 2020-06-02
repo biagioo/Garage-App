@@ -7,12 +7,19 @@
 </head>
 <body>
     <header>
-        <h2>Check All Garages</h2>
-        <form id="login-form" class="" action="index.html" method="post">
+        <h2>Here Are All Current Garages</h2>
+        <form id="login-form" class="user_login" action="index.html" method="post">
             <h3>Login to Add to Your garage:</h3>
-            <input id="login-field" type="text" value="" placeholder="username">
+            <input id="login-field" type="text" name="username" value="" placeholder="username">
             <br><br>
-            <input type="submit">
+            <input type="submit" name="submit" value="Submit" class="submit" />
+            <br><br>
+        </form>
+        <form id="signup-form" class="add-user" action="index.html" method="post">
+            <h3>Sign to Create Your garage:</h3>
+            <input id="signup-field" type="text" name="username" value="" placeholder="username">
+            <br><br>
+            <input type="submit" name="submit" value="Submit" class="submit" />
             <br><br>
           </form>
     </header>
