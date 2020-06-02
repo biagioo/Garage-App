@@ -9,4 +9,14 @@ class CarsController < ApplicationController
         car = Car.find_by(id: params[:id])
         render json: car
     end
+
+    def create 
+
+    end
+
+    private
+
+    def car_params 
+        params.require(:car).permit(:year, :make, :model, :trim, :user_id)
+    end
 end

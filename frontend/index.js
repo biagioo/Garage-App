@@ -88,11 +88,29 @@ const createUser = (e) => {
     .then(userObj => renderUser(userObj))
 }
 
+const loadAllUsersForForm = () => {
+    fetch(usersUrl) 
+    .then(resp => resp.json())
+    .then(json => { 
+        json.forEach(user => selectUserForm(user)
+    )}) 
+    
+}
+
+let selectUserForm = (user) =>{
+   return <option user_id="${user.id}" value="${user.id}">${user.username}</option>  
+}
 
 const renderCarForm = () =>{
-    console.log(mainHTML.innerHTML)
+    loadAllUsersForForm()
     
+
     mainHTML.innerHTML = `<form action="/action_page.php" method="get">
+    <label for="users">Select the user you'd like to add a car to: </label>
+    <select name="users" id="select-users-id"></select>
+    ${selectUserForm()}
+    </select>
+    <br></br>
     <label for="year">Year: </label>
     <input type="text" id="year" name="year"></input>
     <br></br>
@@ -107,6 +125,10 @@ const renderCarForm = () =>{
     <br></br>
     <input type="submit" value="Submit"></input>
   </form>`
+
+
 }
+
+
 
 
