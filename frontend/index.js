@@ -6,7 +6,7 @@ const addCarBtn = document.querySelector('.add-car-btn')
 
 let users = [] 
 
-document.addEventListener("DOMContentLoaded", () => {
+let homePage = document.addEventListener("DOMContentLoaded", () => {
     loadUsers()
     signupForm()
     addCarBtn.addEventListener('click', e =>{
@@ -31,18 +31,42 @@ const renderUser = (user) => {
     // console.log(user)
     const div = document.createElement("div")
     const h3 = document.createElement("h4") 
+    const garageBtn = document.createElement('button')
+
+    garageBtn.innerText = 'View My Garage'
+    garageBtn.setAttribute('value', `${user.id}`)
+    garageBtn.addEventListener('click', e=> {
+        e.preventDefault()
+        console.log(e.target.value)
+        loadGarage(e)
+    })
     
     div.setAttribute("class", "garage")
 
-    h3.innerText = `Username: ${user.username}`
+    h3.innerText = `${user.username}'s Garage`
     h3.setAttribute('id', user.id)
 
     
     div.appendChild(h3)
+    div.appendChild(garageBtn)
     mainHTML.appendChild(div)
 
     user.cars.forEach(car => renderCars(car))
 }
+
+const loadGarage = e =>{
+    fetch(`${usersUrl}/${e.target.value}`) 
+    .then(resp => resp.json())
+    .then(userObj => {
+        mainHTML.innerHTML =''
+        renderUser(userObj)
+    }) 
+}
+
+// const renderGarage = userObj => {
+//     const h3 = document.createElement('h3')
+//     h3.innerText = `${userObj.u}`
+// }
 
 const renderCars = (car) => {
     const h3 = document.getElementById(`${car.user_id}`)
@@ -101,8 +125,18 @@ const renderCarForm = () =>{
     const homeBtn = document.createElement('button')
     homeBtn.innerText = 'All Garages'
     homeBtn.addEventListener('click', e =>{
-        e.preventDefault()
-        loadUsers()
+        // e.preventDefault()
+        // mainHTML.innerHTML = ''
+        // header.innerHTML = `<h2>All Current Garages</h2>
+        // <form id="signup-form" class="add-user" action="index.html" method="post">
+        //     <h3>Sign to Create Your garage:</h3>
+        //     <input id="signup-field" type="text" name="username" value="" placeholder="username">
+        //     <br><br>
+        //     <input type="submit" name="submit" value="Submit" class="submit">
+        //     <br><br>
+        // </form>
+        // <button name="add-car" class="add-car-btn">Add Car</button>`
+        // homePage
     })
     header.appendChild(homeBtn)
 
@@ -135,6 +169,7 @@ const renderCarForm = () =>{
         createNewCar(e)
     })
    
+
    
     // newCarForm.querySelector('button').addEventListener('click', event => {
     //     event.preventDefault()
@@ -168,12 +203,17 @@ const createNewCar = e =>{
 
 const renderCar = car =>{
     const newUserForm = document.querySelector(".add-user")
+    
     mainHTML.innerHTML = ''
+    
     newUserForm.innerHTML = ''
     console.log(car.user.username)
+   
     const header = document.createElement("h3")
+   
     header.setAttribute('id', `${car.user_id}`) 
     header.innerHTML = `Username: ${car.user.username}`
+   
     mainHTML.appendChild(header)
     
     renderCars(car)
