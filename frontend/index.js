@@ -30,7 +30,7 @@ const loadUsers = () => {
 const renderUser = (user) => {
     // console.log(user)
     const div = document.createElement("div")
-    const h3 = document.createElement("h4") 
+    const h3 = document.createElement("h3") 
     const garageBtn = document.createElement('button')
 
     garageBtn.innerText = 'View My Garage'
@@ -58,15 +58,33 @@ const loadGarage = e =>{
     fetch(`${usersUrl}/${e.target.value}`) 
     .then(resp => resp.json())
     .then(userObj => {
-        mainHTML.innerHTML =''
-        renderUser(userObj)
+        // mainHTML.innerHTML =''
+        renderGarage(userObj)
     }) 
 }
 
-// const renderGarage = userObj => {
-//     const h3 = document.createElement('h3')
-//     h3.innerText = `${userObj.u}`
-// }
+const renderGarage = userObj => {
+    mainHTML.innerHTML =''
+
+    const h3 = document.createElement('h3')
+    h3.setAttribute('id', userObj.id)
+    h3.innerText = `${userObj.username}'s Garage`
+
+    mainHTML.appendChild(h3)
+    
+    userObj.cars.map(car => {
+      let dltBtn = document.createElement('button')
+      dltBtn.innerText = "Delete Car"
+
+      dltBtn.addEventListener('click', e => {
+          e.preventDefault()
+          console.log('i am deleted')
+      })
+      h3.appendChild(dltBtn)
+
+      renderCars(car)
+    })
+}
 
 const renderCars = (car) => {
     const h3 = document.getElementById(`${car.user_id}`)
