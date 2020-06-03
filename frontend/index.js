@@ -95,7 +95,19 @@ const createUser = (e) => {
 
 
 const renderCarForm = () =>{
+    const header = document.querySelector('header')
+    header.innerHTML = `<h2> Please Fill in the Form Below !</h2>`
+
+    const homeBtn = document.createElement('button')
+    homeBtn.innerText = 'All Garages'
+    homeBtn.addEventListener('click', e =>{
+        e.preventDefault()
+        loadUsers()
+    })
+    header.appendChild(homeBtn)
+
     
+
     mainHTML.innerHTML = `<form class="new-car">
     <label for="users"> Select the user you'd like to add a car to: </label>
     <select name="users" id="select-users-id">
@@ -121,11 +133,6 @@ const renderCarForm = () =>{
     newCarForm.addEventListener('submit', e =>{
         e.preventDefault()
         createNewCar(e)
-        // console.log(e.target.users.value)
-        // console.log(e.target.year.value)
-        // console.log(e.target.make.value)
-        // console.log(e.target.model.value)
-        // console.log(e.target.trim.value)
     })
    
    
@@ -160,11 +167,13 @@ const createNewCar = e =>{
 }
 
 const renderCar = car =>{
+    const newUserForm = document.querySelector(".add-user")
     mainHTML.innerHTML = ''
+    newUserForm.innerHTML = ''
     console.log(car.user.username)
     const header = document.createElement("h3")
     header.setAttribute('id', `${car.user_id}`) 
-    header.innerText = car.user.username
+    header.innerHTML = `Username: ${car.user.username}`
     mainHTML.appendChild(header)
     
     renderCars(car)
