@@ -9,22 +9,20 @@ let users = []
 
 
 
-let homePage = () =>{
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     loadUsers()
-        addCarBtn.addEventListener('click', e =>{
-            e.preventDefault()
-            renderCarForm()
-        })
-
+    addCarBtn.addEventListener('click', e =>{
+        e.preventDefault()
+        renderCarForm()
     })
-}
-homePage()
+
+})
+
 
 allGaragesBtn.addEventListener('click', e =>{
     e.preventDefault()
     console.log("hello")
-    homePage()
+    // load the users and their garages back in 
 })
 
 
@@ -160,25 +158,6 @@ const createUser = (e) => {
 const renderCarForm = () =>{
     const header = document.querySelector('header')
     header.innerHTML = `<h2> Please Fill in the Form Below !</h2>`
-
-    const homeBtn = document.createElement('button')
-    homeBtn.innerText = 'All Garages'
-    homeBtn.addEventListener('click', e =>{
-        // e.preventDefault()
-        // mainHTML.innerHTML = ''
-        // header.innerHTML = `<h2>All Current Garages</h2>
-        // <form id="signup-form" class="add-user" action="index.html" method="post">
-        //     <h3>Sign to Create Your garage:</h3>
-        //     <input id="signup-field" type="text" name="username" value="" placeholder="username">
-        //     <br><br>
-        //     <input type="submit" name="submit" value="Submit" class="submit">
-        //     <br><br>
-        // </form>
-        // <button name="add-car" class="add-car-btn">Add Car</button>`
-        // homePage
-    })
-    header.appendChild(homeBtn)
-
     
 
     mainHTML.innerHTML = `<form class="new-car">
@@ -207,16 +186,6 @@ const renderCarForm = () =>{
         e.preventDefault()
         createNewCar(e)
     })
-   
-
-   
-    // newCarForm.querySelector('button').addEventListener('click', event => {
-    //     event.preventDefault()
-    //     let form = event.target.parentElement
-    //     let formInputs = form.querySelectorAll('input')
-    //     console.log(formInputs)
-    //     console.log(form)
-    // })
 }
 
 
@@ -246,7 +215,6 @@ const renderCar = car =>{
     mainHTML.innerHTML = ''
     
     newUserForm.innerHTML = ''
-    console.log(car.user.username)
    
     const header = document.createElement("h3")
    
