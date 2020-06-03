@@ -121,11 +121,11 @@ const renderCarForm = () =>{
     newCarForm.addEventListener('submit', e =>{
         e.preventDefault()
         createNewCar(e)
-        console.log(e.target.users.value)
-        console.log(e.target.year.value)
-        console.log(e.target.make.value)
-        console.log(e.target.model.value)
-        console.log(e.target.trim.value)
+        // console.log(e.target.users.value)
+        // console.log(e.target.year.value)
+        // console.log(e.target.make.value)
+        // console.log(e.target.model.value)
+        // console.log(e.target.trim.value)
     })
    
    
@@ -156,21 +156,18 @@ const createNewCar = e =>{
         body: JSON.stringify(newCar)
     })
     .then(resp => resp.json())
-    .then(carObj => console.log(carObj))
+    .then(carObj => renderCar(carObj))
 }
-// hiding index page(what alex said)
 
-// const renderCar = carObj =>{
-//     const div = document.createElement("div")
-//     const h3 = document.createElement("h4") 
+const renderCar = car =>{
+    mainHTML.innerHTML = ''
+    console.log(car.user.username)
+    const header = document.createElement("h3")
+    header.setAttribute('id', `${car.user_id}`) 
+    header.innerText = car.user.username
+    mainHTML.appendChild(header)
     
-//     div.setAttribute("class", "garage")
-
-//     h3.innerText = `Username: ${user.username}`
-//     h3.setAttribute('id', user.id)
-
+    renderCars(car)
     
-//     div.appendChild(h3)
-//     mainHTML.appendChild(div)
-// }
+}
 
