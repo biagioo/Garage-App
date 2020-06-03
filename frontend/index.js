@@ -3,18 +3,30 @@ const carsUrl = `${baseUrl}/cars`
 const usersUrl = `${baseUrl}/users`
 const mainHTML = document.querySelector('main')
 const addCarBtn = document.querySelector('.add-car-btn')
+const allGaragesBtn = document.querySelector(".all-garages-btn")
 
 let users = [] 
 
-let homePage = document.addEventListener("DOMContentLoaded", () => {
-    loadUsers()
-    signupForm()
-    addCarBtn.addEventListener('click', e =>{
-        e.preventDefault()
-        renderCarForm()
-    })
 
+
+let homePage = () =>{
+    document.addEventListener("DOMContentLoaded", () => {
+    loadUsers()
+        addCarBtn.addEventListener('click', e =>{
+            e.preventDefault()
+            renderCarForm()
+        })
+
+    })
+}
+homePage()
+
+allGaragesBtn.addEventListener('click', e =>{
+    e.preventDefault()
+    console.log("hello")
+    homePage()
 })
+
 
 const loadUsers = () => {
     fetch(usersUrl) 
@@ -23,6 +35,7 @@ const loadUsers = () => {
         json.forEach(user => renderUser(user)
         ) 
         users = json
+        signupForm()
     }
     ) 
 }
@@ -75,15 +88,23 @@ const renderGarage = userObj => {
     userObj.cars.map(car => {
       let dltBtn = document.createElement('button')
       dltBtn.innerText = "Delete Car"
-
+      dltBtn.setAttribute('value', `${car.id}`)  
       dltBtn.addEventListener('click', e => {
-          e.preventDefault()
-          console.log('i am deleted')
+        e.preventDefault()
+        deleteCar(e.target.value)    
       })
       h3.appendChild(dltBtn)
 
       renderCars(car)
     })
+}
+
+const deleteCar = id =>{
+    fetch(carsUrl + `/${id}`, {
+        method: 'DELETE'
+    })
+    .then(resp => resp.json())
+    .then(data => console.log(data))
 }
 
 const renderCars = (car) => {

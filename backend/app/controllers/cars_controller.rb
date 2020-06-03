@@ -22,6 +22,10 @@ class CarsController < ApplicationController
         end
     end
 
+    def delete
+        byebug
+    end
+
     private
 
     def car_params 
