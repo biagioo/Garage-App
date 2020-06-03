@@ -158,6 +158,7 @@ const createNewCar = e =>{
     .then(resp => resp.json())
     .then(carObj => console.log(carObj))
 }
+// hiding index page(what alex said)
 
 // const renderCar = carObj =>{
 //     const div = document.createElement("div")
