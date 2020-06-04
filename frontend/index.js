@@ -8,14 +8,12 @@ const allGaragesBtn = document.querySelector(".all-garages-btn")
 let users = [] 
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
-    loadUsers()
-    addCarBtn.addEventListener('click', e =>{
+     allGaragesBtn.addEventListener('click', e =>{
         e.preventDefault()
-        renderCarForm()
+        loadUsers()
     })
-
+    
 })
 
 
@@ -26,6 +24,7 @@ allGaragesBtn.addEventListener('click', e =>{
 })
 
 
+
 const loadUsers = () => {
     fetch(usersUrl) 
     .then(resp => resp.json())
@@ -33,13 +32,38 @@ const loadUsers = () => {
         json.forEach(user => renderUser(user)
         ) 
         users = json
-        signupForm()
+        createNewUserForm()
+        addCarBtn.addEventListener('click', e =>{
+            e.preventDefault()
+            renderCarForm()
+            createNewUserForm()
+        })
     }
     ) 
 }
 
+const createNewUserForm = () => {
+    const div = document.getElementById('new-user-form')
+    div.innerHTML = `<form id="signup-form" class="add-user" action="index.html" method="post">
+    <h3>Sign to Create Your garage:</h3>
+    <input id="signup-field" type="text" name="username" value="" placeholder="username">
+    <br><br>
+    <input type="submit" name="submit" value="Submit" class="submit">
+    <br><br>
+    </form>`
+    const form = document.querySelector(".add-user")
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        createUser(e)
+        form.reset()
+    })
+}
+
 const renderUser = (user) => {
     // console.log(user)
+
+
+
     const div = document.createElement("div")
     const h3 = document.createElement("h3") 
     const garageBtn = document.createElement('button')
@@ -128,15 +152,6 @@ const renderCars = (car) => {
     
 }
 
-const signupForm = () =>{
-    const form = document.querySelector(".add-user")
-    form.addEventListener('submit', e => {
-        e.preventDefault()
-        createUser(e)
-        form.reset()
-    })
-}
-
 
 const createUser = (e) => {
     let newUser ={
@@ -210,11 +225,8 @@ const createNewCar = e =>{
 }
 
 const renderCar = car =>{
-    const newUserForm = document.querySelector(".add-user")
-    
-    mainHTML.innerHTML = ''
-    
-    newUserForm.innerHTML = ''
+    const newCarForm = document.querySelector(".new-car")
+    newCarForm.innerhtml = ''
    
     const header = document.createElement("h3")
    
@@ -223,7 +235,8 @@ const renderCar = car =>{
    
     mainHTML.appendChild(header)
     
-    renderCars(car)
+    loadUsers()
+    // renderCars(car)
     
 }
 
