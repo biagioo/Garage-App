@@ -24,7 +24,9 @@ class CarsController < ApplicationController
 
     def destroy
         car = Car.find_by(id: params[:id])
+        user = car.user
         car.destroy
+        render json: user
     end
 
     private

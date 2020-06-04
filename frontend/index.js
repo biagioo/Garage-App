@@ -81,7 +81,7 @@ const renderUser = (user) => {
     garageBtn.setAttribute('value', `${user.id}`)
     garageBtn.addEventListener('click', e=> {
         e.preventDefault()
-        console.log(e.target.value)
+        // console.log(e.target.value)
         loadGarage(e)
     })
     
@@ -141,7 +141,9 @@ const deleteCar = id =>{
             // delete car from front end
             // successful delete msg
             // load garage show page
-            console.log(data)
+            renderGarage(data)
+            window.alert("Car Removal Successful")
+
         }else{
             throw new Error(`${data.errors}`)
         }
@@ -157,6 +159,7 @@ const renderCars = (car) => {
     const liYear = document.createElement('li')
     const liTrim = document.createElement('li')
     
+    ul.setAttribute('id', car.id)
     liMake.innerText = `Manufacturer: ${car.make}`
     liModel.innerText = `Model: ${car.model}`
     liYear.innerText = `Year: ${car.year}`
