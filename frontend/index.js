@@ -6,7 +6,6 @@ const btnsDiv = document.getElementById("buttons")
 const allGaragesBtn = document.getElementById("all-garages-btn")
 const bodyHeaderH2 = document.querySelector('h2') 
 
-// let users = []
 document.addEventListener("DOMContentLoaded", () => {
      allGaragesBtn.addEventListener('click', e =>{
         e.preventDefault()
@@ -69,9 +68,6 @@ const createNewUserForm = () => {
 }
 
 const renderUser = (user) => {
-    // console.log(user)
-
-
 
     const div = document.createElement("div")
     const h3 = document.createElement("h3") 
@@ -81,7 +77,6 @@ const renderUser = (user) => {
     garageBtn.setAttribute('value', `${user.id}`)
     garageBtn.addEventListener('click', e=> {
         e.preventDefault()
-        // console.log(e.target.value)
         loadGarage(e)
     })
     
@@ -102,7 +97,6 @@ const loadGarage = e =>{
     fetch(`${usersUrl}/${e.target.value}`) 
     .then(resp => resp.json())
     .then(userObj => {
-        // mainHTML.innerHTML =''
         renderGarage(userObj)
     }) 
 }
@@ -137,10 +131,6 @@ const deleteCar = id =>{
     .then(resp => resp.json())
     .then((data) => {
         if (!data.errors){
-            // find car by id
-            // delete car from front end
-            // successful delete msg
-            // load garage show page
             renderGarage(data)
             window.alert("Car Removal Successful")
 
@@ -192,6 +182,7 @@ const createUser = (e) => {
 }
 
 
+
 const renderCarForm = () =>{
     let users = [] 
 
@@ -200,14 +191,12 @@ const renderCarForm = () =>{
     .then(json => json.forEach(user =>{
         users.push(user)
     }) ) 
-    console.log(users)
 
     const newUserForm = document.getElementById('new-user-form')
     newUserForm.innerHTML = ""
     
     const h2 = document.querySelector('h2')
     h2.innerText = "Please Fill in the Form Below!"
-    
 
     mainHTML.innerHTML = `<form id="new-car">
     <label for="users"> Select the user you'd like to add a car to: </label>

@@ -1,12 +1,14 @@
 class User {
    static all = []
    
-    constructor(username){
+    constructor(id, username, cars){
         this.username = username
+        this.id = id
+        this.cars = cars // cars array for each users
         User.all.push(this)
-        // cars array for each users
     }
 
+    
 
 
 }

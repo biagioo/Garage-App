@@ -1,13 +1,24 @@
-delete action on show page isn't working CORS error
-
+                                               <!-- REVIEW OOJS CURIC -->
 OOJS 
      - seperation of concerns for OOJS files, where to put what?
-     -
 
+When does the user model need to be used?
+    - Whenever we are creating a new user 
+    - Whenever we need to use a user ex:
+        -loadUsers()
+        -renderUsers() 
+        -loadUsersCars()
+        -renderUsersCars()
+        
 
-When i add a new user, then go to add a new car to the new users garage, the user isn't in the user drop down list,
-    have to refresh the page
-    
+When does the api model need to be used?
+    -When ever we need to access the api ex:
+        - any Fetch request.
+  
+
+new car form - userSelectDropDown--
+    the user array is being evaluated before the users are pushed into the users array
+
 
 
 
