@@ -13,6 +13,6 @@ When i add a new user, then go to add a new car to the new users garage, the use
 
 redirect to all garages page 
 
-home button -- are we allowed to refresh the page? was thinking of doin this for my home page button
+home button -- duplicates cars in the each garage
 
 

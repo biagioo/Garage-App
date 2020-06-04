@@ -2,7 +2,7 @@ const baseUrl = "http://localhost:3000"
 const carsUrl = `${baseUrl}/cars`
 const usersUrl = `${baseUrl}/users`
 const mainHTML = document.querySelector('main')
-const addCarBtn = document.querySelector('.add-car-btn')
+const btnsDiv = document.getElementById("buttons")
 const allGaragesBtn = document.querySelector(".all-garages-btn")
 
 let users = [] 
@@ -11,17 +11,33 @@ let users = []
 document.addEventListener("DOMContentLoaded", () => {
      allGaragesBtn.addEventListener('click', e =>{
         e.preventDefault()
+        mainHTML.innerHTML = ''
         loadUsers()
+        createNewCarBtn()
     })
+    // addCarBtn.addEventListener('click', e =>{
+    //     e.preventDefault()
+    //     renderCarForm()
+    // })
     
 })
 
+const createNewCarBtn = () =>{
+    const newCarBtn = document.createElement('button')
 
-allGaragesBtn.addEventListener('click', e =>{
-    e.preventDefault()
-    console.log("hello")
-    // load the users and their garages back in 
-})
+    newCarBtn.setAttribute("name", "add-car")
+    newCarBtn.setAttribute('class',"add-car-btn" )
+    newCarBtn.innerText = "Add Car"
+
+    newCarBtn.addEventListener('click', e =>{
+            e.preventDefault()
+            renderCarForm()
+        })
+    
+    btnsDiv.appendChild(newCarBtn)
+
+}
+
 
 
 
@@ -33,11 +49,6 @@ const loadUsers = () => {
         ) 
         users = json
         createNewUserForm()
-        addCarBtn.addEventListener('click', e =>{
-            e.preventDefault()
-            renderCarForm()
-            createNewUserForm()
-        })
     }
     ) 
 }
@@ -171,8 +182,14 @@ const createUser = (e) => {
 
 
 const renderCarForm = () =>{
-    const header = document.querySelector('header')
-    header.innerHTML = `<h2> Please Fill in the Form Below !</h2>`
+    // const header = document.querySelector('header')
+    // header.innerText = `<h2> Please Fill in the Form Below !</h2>`
+
+    const newUserForm = document.getElementById('new-user-form')
+    newUserForm.innerHTML = ""
+    
+    const h2 = document.querySelector('h2')
+    h2.innerText = "Please Fill in the Form Below!"
     
 
     mainHTML.innerHTML = `<form class="new-car">
