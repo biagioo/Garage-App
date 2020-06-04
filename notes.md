@@ -9,7 +9,6 @@ When i add a new user, then go to add a new car to the new users garage, the use
     have to refresh the page
     
 
-redirect to all garages page -- ?
 
 
 

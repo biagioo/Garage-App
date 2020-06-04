@@ -4,11 +4,9 @@ const usersUrl = `${baseUrl}/users`
 const mainHTML = document.querySelector('main')
 const btnsDiv = document.getElementById("buttons")
 const allGaragesBtn = document.getElementById("all-garages-btn")
-const bodyHeaderH2 = document.querySelector('h2')
+const bodyHeaderH2 = document.querySelector('h2') 
 
-let users = [] 
-
-
+// let users = []
 document.addEventListener("DOMContentLoaded", () => {
      allGaragesBtn.addEventListener('click', e =>{
         e.preventDefault()
@@ -28,13 +26,11 @@ const createNewCarBtn = () =>{
     
     if(!(findAddCarBtn)) {
     newCarBtn.setAttribute("id", "add-car-btn")
-    // newCarBtn.setAttribute('class',"add-car-btn" )
     newCarBtn.innerText = "Add Car"
     newCarBtn.addEventListener('click', e =>{
             e.preventDefault()
             renderCarForm()
         })
-    
     btnsDiv.appendChild(newCarBtn)
     } 
 
@@ -49,7 +45,7 @@ const loadUsers = () => {
     .then(json => { 
         json.forEach(user => renderUser(user)
         ) 
-        users = json
+        // users = json
         createNewUserForm()
     }
     ) 
@@ -139,8 +135,18 @@ const deleteCar = id =>{
         method: 'DELETE'
     })
     .then(resp => resp.json())
-    .then(data => console.log(data))
-}
+    .then((data) => {
+        if (!data.errors){
+            // find car by id
+            // delete car from front end
+            // successful delete msg
+            // load garage show page
+            console.log(data)
+        }else{
+            throw new Error(`${data.errors}`)
+        }
+    }
+)}
 
 const renderCars = (car) => {
     const h3 = document.getElementById(`${car.user_id}`)
@@ -184,8 +190,14 @@ const createUser = (e) => {
 
 
 const renderCarForm = () =>{
-    // const header = document.querySelector('header')
-    // header.innerText = `<h2> Please Fill in the Form Below !</h2>`
+    let users = [] 
+
+    fetch(usersUrl) 
+    .then(resp => resp.json())
+    .then(json => json.forEach(user =>{
+        users.push(user)
+    }) ) 
+    console.log(users)
 
     const newUserForm = document.getElementById('new-user-form')
     newUserForm.innerHTML = ""

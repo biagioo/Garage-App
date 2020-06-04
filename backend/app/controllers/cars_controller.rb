@@ -22,8 +22,9 @@ class CarsController < ApplicationController
         end
     end
 
-    def delete
-        byebug
+    def destroy
+        car = Car.find_by(id: params[:id])
+        car.destroy
     end
 
     private
