@@ -3,7 +3,7 @@ const carsUrl = `${baseUrl}/cars`
 const usersUrl = `${baseUrl}/users`
 const mainHTML = document.querySelector('main')
 const btnsDiv = document.getElementById("buttons")
-const allGaragesBtn = document.querySelector(".all-garages-btn")
+const allGaragesBtn = document.getElementById("all-garages-btn")
 
 let users = [] 
 
@@ -15,26 +15,25 @@ document.addEventListener("DOMContentLoaded", () => {
         loadUsers()
         createNewCarBtn()
     })
-    // addCarBtn.addEventListener('click', e =>{
-    //     e.preventDefault()
-    //     renderCarForm()
-    // })
+  
     
 })
 
 const createNewCarBtn = () =>{
     const newCarBtn = document.createElement('button')
-
-    newCarBtn.setAttribute("name", "add-car")
-    newCarBtn.setAttribute('class',"add-car-btn" )
+    const findAddCarBtn = document.getElementById("add-car-btn")
+    
+    if(!(findAddCarBtn)) {
+    newCarBtn.setAttribute("id", "add-car-btn")
+    // newCarBtn.setAttribute('class',"add-car-btn" )
     newCarBtn.innerText = "Add Car"
-
     newCarBtn.addEventListener('click', e =>{
             e.preventDefault()
             renderCarForm()
         })
     
     btnsDiv.appendChild(newCarBtn)
+    } 
 
 }
 
