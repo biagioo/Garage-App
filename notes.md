@@ -1,8 +1,6 @@
 delete action on show page isn't working CORS error
 
-redirect to car show page after new car created
-
-OOJS - how to link all the js pages? OO files
+OOJS 
      - seperation of concerns for OOJS files, where to put what?
      -
 
@@ -11,8 +9,7 @@ When i add a new user, then go to add a new car to the new users garage, the use
     have to refresh the page
     
 
-redirect to all garages page 
+redirect to all garages page -- ?
 
-home button -- duplicates cars in the each garage
 
 

@@ -4,6 +4,7 @@ const usersUrl = `${baseUrl}/users`
 const mainHTML = document.querySelector('main')
 const btnsDiv = document.getElementById("buttons")
 const allGaragesBtn = document.getElementById("all-garages-btn")
+const bodyHeaderH2 = document.querySelector('h2')
 
 let users = [] 
 
@@ -12,12 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
      allGaragesBtn.addEventListener('click', e =>{
         e.preventDefault()
         mainHTML.innerHTML = ''
+        bodyHeaderH2.innerText = 'Here are All Current Garages'
         loadUsers()
         createNewCarBtn()
     })
   
     
 })
+
 
 const createNewCarBtn = () =>{
     const newCarBtn = document.createElement('button')
@@ -191,7 +194,7 @@ const renderCarForm = () =>{
     h2.innerText = "Please Fill in the Form Below!"
     
 
-    mainHTML.innerHTML = `<form class="new-car">
+    mainHTML.innerHTML = `<form id="new-car">
     <label for="users"> Select the user you'd like to add a car to: </label>
     <select name="users" id="select-users-id">
     ${users.map(user => `<option value=${user.id}> ${user.username} </option>`)}
@@ -212,7 +215,7 @@ const renderCarForm = () =>{
     <input type="submit" name="submit" value="Add New Car" class="submit">
   </form>`
 
-    const newCarForm = document.querySelector('.new-car')
+    const newCarForm = document.getElementById('new-car')
     newCarForm.addEventListener('submit', e =>{
         e.preventDefault()
         createNewCar(e)
@@ -241,18 +244,19 @@ const createNewCar = e =>{
 }
 
 const renderCar = car =>{
-    const newCarForm = document.querySelector(".new-car")
-    newCarForm.innerhtml = ''
+    const newCarForm = document.getElementById("new-car")
+    newCarForm.innerHTML = ''
    
-    const header = document.createElement("h3")
+    const h3 = document.createElement("h3")
    
-    header.setAttribute('id', `${car.user_id}`) 
-    header.innerHTML = `Username: ${car.user.username}`
+    h3.setAttribute('id', `${car.user_id}`) 
+    h3.innerHTML = `Username: ${car.user.username}`
    
-    mainHTML.appendChild(header)
+    mainHTML.appendChild(h3)
     
-    loadUsers()
-    // renderCars(car)
-    
+   
+   renderCars(car)
+   const h2 = document.querySelector('h2')
+   h2.innerText = "Here is the car you just added"
 }
 
