@@ -1,7 +1,7 @@
-class Api {
-    static baseUrl =  "http://localhost:3000"
-    static carsUrl = `${baseUrl}/cars`
-    static usersUrl = `${baseUrl}/users`
+class API {
+    // static baseUrl =  "http://localhost:3000"
+    // static carsUrl = `${baseUrl}/cars`
+    // static usersUrl = `${baseUrl}/users`
 
     static options = {
         headers: {
@@ -10,16 +10,9 @@ class Api {
         }
     }
 
-    static getCars(){
-        return(
-        fetch(carsUrl)
-        .then(resp => resp.json())
-        )
-    }
-
     static getUsers(){
         return(
-        fetch(usersUrl)
+        fetch("http://localhost:3000/users")
         .then(resp => resp.json())
         )
     }

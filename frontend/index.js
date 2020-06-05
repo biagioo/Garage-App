@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault()
         mainHTML.innerHTML = ''
         bodyHeaderH2.innerText = 'Here are All Current Garages'
-        loadUsers()
+        User.loadUsers()
+        // getUsers()
         createNewCarBtn()
     })
   
@@ -38,17 +39,17 @@ const createNewCarBtn = () =>{
 
 
 
-const loadUsers = () => {
-    fetch(usersUrl) 
-    .then(resp => resp.json())
-    .then(json => { 
-        json.forEach(user => renderUser(user)
-        ) 
-        // users = json
-        createNewUserForm()
-    }
-    ) 
-}
+// const getUsers = () => {
+//     fetch(usersUrl) 
+//     .then(resp => resp.json())
+//     .then(json => { 
+//         json.forEach(user => renderUser(user)
+//         ) 
+//         // users = json
+//         createNewUserForm()
+//     }
+//     ) 
+// }
 
 const createNewUserForm = () => {
     const div = document.getElementById('new-user-form')
@@ -67,31 +68,31 @@ const createNewUserForm = () => {
     })
 }
 
-const renderUser = (user) => {
+// const renderUser = (user) => {
 
-    const div = document.createElement("div")
-    const h3 = document.createElement("h3") 
-    const garageBtn = document.createElement('button')
+//     const div = document.createElement("div")
+//     const h3 = document.createElement("h3") 
+//     const garageBtn = document.createElement('button')
 
-    garageBtn.innerText = 'View My Garage'
-    garageBtn.setAttribute('value', `${user.id}`)
-    garageBtn.addEventListener('click', e=> {
-        e.preventDefault()
-        loadGarage(e)
-    })
+//     garageBtn.innerText = 'View My Garage'
+//     garageBtn.setAttribute('value', `${user.id}`)
+//     garageBtn.addEventListener('click', e=> {
+//         e.preventDefault()
+//         loadGarage(e)
+//     })
     
-    div.setAttribute("class", "garage")
+//     div.setAttribute("class", "garage")
 
-    h3.innerText = `${user.username}'s Garage`
-    h3.setAttribute('id', user.id)
+//     h3.innerText = `${user.username}'s Garage`
+//     h3.setAttribute('id', user.id)
 
     
-    div.appendChild(h3)
-    div.appendChild(garageBtn)
-    mainHTML.appendChild(div)
+//     div.appendChild(h3)
+//     div.appendChild(garageBtn)
+//     mainHTML.appendChild(div)
 
-    user.cars.forEach(car => renderCars(car))
-}
+//     user.cars.forEach(car => renderCars(car))
+// }
 
 const loadGarage = e =>{
     fetch(`${usersUrl}/${e.target.value}`) 
@@ -140,29 +141,29 @@ const deleteCar = id =>{
     }
 )}
 
-const renderCars = (car) => {
-    const h3 = document.getElementById(`${car.user_id}`)
+// const renderCars = (car) => {
+//     const h3 = document.getElementById(`${car.user_id}`)
     
-    const ul = document.createElement("ul")  
-    const liMake = document.createElement('li')
-    const liModel = document.createElement('li')
-    const liYear = document.createElement('li')
-    const liTrim = document.createElement('li')
+//     const ul = document.createElement("ul")  
+//     const liMake = document.createElement('li')
+//     const liModel = document.createElement('li')
+//     const liYear = document.createElement('li')
+//     const liTrim = document.createElement('li')
     
-    ul.setAttribute('id', car.id)
-    liMake.innerText = `Manufacturer: ${car.make}`
-    liModel.innerText = `Model: ${car.model}`
-    liYear.innerText = `Year: ${car.year}`
-    liTrim.innerText = `Trim: ${car.trim}`
+//     ul.setAttribute('id', car.id)
+//     liMake.innerText = `Manufacturer: ${car.make}`
+//     liModel.innerText = `Model: ${car.model}`
+//     liYear.innerText = `Year: ${car.year}`
+//     liTrim.innerText = `Trim: ${car.trim}`
     
-    ul.appendChild(liYear)
-    ul.appendChild(liMake)
-    ul.appendChild(liModel)
-    ul.append(liTrim)
+//     ul.appendChild(liYear)
+//     ul.appendChild(liMake)
+//     ul.appendChild(liModel)
+//     ul.append(liTrim)
     
-    h3.appendChild(ul)
+//     h3.appendChild(ul)
     
-}
+// }
 
 
 const createUser = (e) => {
