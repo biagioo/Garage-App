@@ -8,14 +8,19 @@ class User {
         User.all.push(this)
     }
 
+    static loadUsers(){
+        User.all = []
+        API.getUsers() 
+        .then(users =>{
+            users.forEach(user => new User(user))
+            User.renderUsers()
+        }) 
+    }
+
     static renderUsers(){
-        // const allDivGarage = document.querySelectorAll('div.garage');
-        // const divIds = [];
-        // allDivGarage.forEach(div => divIds.push(div.id));
-        
+
         User.all.forEach(user =>{
-            // let result = divIds.find(id => id == user.id)
-            // if(result === undefined ){ 
+
             const div = document.createElement("div")
             const h3 = document.createElement("h3") 
             const garageBtn = document.createElement('button')
@@ -31,16 +36,12 @@ class User {
             div.setAttribute('id', user.id)
 
             h3.innerText = `${user.username}'s Garage`
-            // h3.setAttribute('id', user.id)
-            
+
             div.appendChild(h3)
             div.appendChild(garageBtn)
             mainHTML.appendChild(div)
 
             user.renderCars()
-        // } else {
-        //     user.renderCars()
-        // }
             })
     }
 
@@ -71,13 +72,6 @@ class User {
         } )    
     }
 
-    static loadUsers(){
-        API.getUsers() 
-        .then(users =>{
-            users.forEach(user => new User(user))
-            User.renderUsers()
-        }) 
-    }
 
     static renderCarForm(){
     
@@ -155,7 +149,7 @@ class User {
     }
 
 
-    
+
 
 
 

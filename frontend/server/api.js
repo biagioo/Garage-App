@@ -51,7 +51,13 @@ class API {
             body: JSON.stringify(newUser)
         })
         .then(resp => resp.json())
-        User.loadUsers()
+        .then(data =>{
+            // debugger
+            mainHTML.innerHTML = ''
+            User.loadUsers()
+        })
+        // 
+        // User.loadUsers()
         // .then(userObj => renderUser(userObj))
     }
 
