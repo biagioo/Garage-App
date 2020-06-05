@@ -61,6 +61,17 @@ class API {
         // .then(userObj => renderUser(userObj))
     }
 
+    static loadUserGarage(e){
+        
+        fetch(`http://localhost:3000/users/${e.target.value}`) 
+        .then(resp => resp.json())
+        .then(user => {
+            // debugger
+            let newUser = User.all.find(userObj =>userObj.id == user.id)
+            newUser.renderGarage()
+        }) 
+
+    }
     
 
 

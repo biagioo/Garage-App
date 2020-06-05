@@ -94,13 +94,13 @@ const createNewUserForm = () => {
 //     user.cars.forEach(car => renderCars(car))
 // }
 
-const loadGarage = e =>{
-    fetch(`${usersUrl}/${e.target.value}`) 
-    .then(resp => resp.json())
-    .then(userObj => {
-        renderGarage(userObj)
-    }) 
-}
+// const loadGarage = e =>{
+//     fetch(`${usersUrl}/${e.target.value}`) 
+//     .then(resp => resp.json())
+//     .then(userObj => {
+//         renderGarage(userObj)
+//     }) 
+// }
 
 const renderGarage = userObj => {
     mainHTML.innerHTML =''

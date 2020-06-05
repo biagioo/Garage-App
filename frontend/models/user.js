@@ -29,7 +29,7 @@ class User {
             garageBtn.setAttribute('value', `${user.id}`)
             garageBtn.addEventListener('click', e=> {
                 e.preventDefault()
-                loadGarage(e)
+                API.loadUserGarage(e)
             })
             
             div.setAttribute("class", "garage")
@@ -148,9 +148,32 @@ class User {
 
     }
 
+    renderGarage(){
+        
+        mainHTML.innerHTML = ''
 
+        const h3 = document.createElement('h3')
+        h3.setAttribute('id',this.id)
+        h3.innerText = `${this.username}'s Garage`
+    
+        mainHTML.appendChild(h3)
+        
+       this.cars.map(car => {
+          let dltBtn = document.createElement('button')
+          dltBtn.innerText = "Delete Car"
+          dltBtn.setAttribute('value', `${car.id}`)  
+          dltBtn.addEventListener('click', e => {
+            e.preventDefault()
+            deleteCar(e.target.value)    
+          })
+          h3.appendChild(dltBtn)
+    
+        //   renderCars(car)
+        })
 
+        this.renderCars()
 
+    }
 
 
 
