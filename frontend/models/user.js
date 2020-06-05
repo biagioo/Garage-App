@@ -80,13 +80,6 @@ class User {
     }
 
     static renderCarForm(){
-
-        // let users = [] 
-
-        // API.getUsers()
-        // .then(json => json.forEach(user =>{
-        //     users.push(user)
-        // }) ) 
     
         const newUserForm = document.getElementById('new-user-form')
         newUserForm.innerHTML = ""
@@ -118,10 +111,75 @@ class User {
         const newCarForm = document.getElementById('new-car')
         newCarForm.addEventListener('submit', e =>{
             e.preventDefault()
-            createNewCar(e)
+            API.postNewCar(e)
         })
 
     }
+
+
+    static renderCar(carObj){
+
+        const newCarForm = document.getElementById("new-car")
+        newCarForm.innerHTML = ''
+    
+        const h3 = document.createElement("h3")
+    
+        h3.setAttribute('id', `${carObj.user_id}`) 
+        h3.innerHTML = `Username: ${carObj.user.username}`
+    
+        mainHTML.appendChild(h3)
+        
+            
+        const ul = document.createElement("ul")  
+        const liMake = document.createElement('li')
+        const liModel = document.createElement('li')
+        const liYear = document.createElement('li')
+        const liTrim = document.createElement('li')
+        
+        ul.setAttribute('id', carObj.id)
+        liMake.innerText = `Manufacturer: ${carObj.make}`
+        liModel.innerText = `Model: ${carObj.model}`
+        liYear.innerText = `Year: ${carObj.year}`
+        liTrim.innerText = `Trim: ${carObj.trim}`
+        
+        ul.appendChild(liYear)
+        ul.appendChild(liMake)
+        ul.appendChild(liModel)
+        ul.append(liTrim)
+        
+        h3.appendChild(ul)
+
+        const h2 = document.querySelector('h2')
+        h2.innerText = "Here is the car you just added"
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

@@ -224,25 +224,25 @@ const createUser = (e) => {
 // }
 
 
-const createNewCar = e =>{
-    let newCar = { 
-        user_id: e.target.users.value, 
-        year: e.target.year.value,
-        make: e.target.make.value,
-        model: e.target.model.value,
-        trim: e.target.trim.value
-    }
+// const createNewCar = e =>{
+//     let newCar = { 
+//         user_id: e.target.users.value, 
+//         year: e.target.year.value,
+//         make: e.target.make.value,
+//         model: e.target.model.value,
+//         trim: e.target.trim.value
+//     }
 
-    fetch(carsUrl, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newCar)
-    })
-    .then(resp => resp.json())
-    .then(carObj => renderCar(carObj))
-}
+//     fetch(carsUrl, {
+//         method: 'POST', 
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(newCar)
+//     })
+//     .then(resp => resp.json())
+//     .then(carObj => renderCar(carObj))
+// }
 
 const renderCar = car =>{
     const newCarForm = document.getElementById("new-car")
