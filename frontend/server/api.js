@@ -52,9 +52,9 @@ class API {
         })
         .then(resp => resp.json())
         .then(data =>{
-            
             mainHTML.innerHTML = ''
             User.loadUsers()
+            alert("User Creation Successful")
         })
     }
 
@@ -71,16 +71,12 @@ class API {
     
 
     static deleteCar(id){
-        
-        
         fetch(carsUrl + `/${id}`, {
             method: 'DELETE'
         })
         .then(resp => resp.json())
         .then((data) => {})
         alert("Car Removal Successful")
-        
-
     }
 
 

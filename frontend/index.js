@@ -10,12 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
      allGaragesBtn.addEventListener('click', e =>{
         e.preventDefault()
         mainHTML.innerHTML = ''
-    //    debugger
         bodyHeaderH2.innerText = 'Here are All Current Garages'
         User.loadUsers()
-        // debugger
         createNewCarBtn()
-        // getUsers()
         createNewUserForm()
         
     })
