@@ -12,8 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
         mainHTML.innerHTML = ''
         bodyHeaderH2.innerText = 'Here are All Current Garages'
         User.loadUsers()
-        // getUsers()
         createNewCarBtn()
+        // getUsers()
+        createNewUserForm()
+        
     })
   
     
@@ -59,7 +61,7 @@ const createNewUserForm = () => {
     const form = document.querySelector(".add-user")
     form.addEventListener('submit', e => {
         e.preventDefault()
-        createUser(e)
+        API.postNewUser(e)
         form.reset()
     })
 }
@@ -162,21 +164,21 @@ const deleteCar = id =>{
 // }
 
 
-const createUser = (e) => {
-    let newUser ={
-        username: e.target.username.value
-    }
+// const createUser = (e) => {
+//     let newUser ={
+//         username: e.target.username.value
+//     }
 
-    fetch(usersUrl, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newUser)
-    })
-    .then(resp => resp.json())
-    .then(userObj => renderUser(userObj))
-}
+//     fetch(usersUrl, {
+//         method: 'POST', 
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(newUser)
+//     })
+//     .then(resp => resp.json())
+//     .then(userObj => renderUser(userObj))
+// }
 
 
 
@@ -244,20 +246,20 @@ const createUser = (e) => {
 //     .then(carObj => renderCar(carObj))
 // }
 
-const renderCar = car =>{
-    const newCarForm = document.getElementById("new-car")
-    newCarForm.innerHTML = ''
+// const renderCar = car =>{
+//     const newCarForm = document.getElementById("new-car")
+//     newCarForm.innerHTML = ''
    
-    const h3 = document.createElement("h3")
+//     const h3 = document.createElement("h3")
    
-    h3.setAttribute('id', `${car.user_id}`) 
-    h3.innerHTML = `Username: ${car.user.username}`
+//     h3.setAttribute('id', `${car.user_id}`) 
+//     h3.innerHTML = `Username: ${car.user.username}`
    
-    mainHTML.appendChild(h3)
+//     mainHTML.appendChild(h3)
     
    
-   renderCars(car)
-   const h2 = document.querySelector('h2')
-   h2.innerText = "Here is the car you just added"
-}
+//    renderCars(car)
+//    const h2 = document.querySelector('h2')
+//    h2.innerText = "Here is the car you just added"
+// }
 

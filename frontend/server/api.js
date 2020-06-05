@@ -26,7 +26,7 @@ class API {
             model: e.target.model.value,
             trim: e.target.trim.value
         }
-        // debugger
+
         fetch("http://localhost:3000/cars", {
             method: 'POST', 
             headers: {
@@ -38,7 +38,22 @@ class API {
         .then(carObj => User.renderCar(carObj))
     }
     
-
+    static postNewUser(e){
+        let newUser ={
+            username: e.target.username.value
+        }
+    
+        fetch(usersUrl, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newUser)
+        })
+        .then(resp => resp.json())
+        User.loadUsers()
+        // .then(userObj => renderUser(userObj))
+    }
 
     
 
