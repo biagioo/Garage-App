@@ -9,30 +9,39 @@ class User {
     }
 
     static renderUsers(){
+        // const allDivGarage = document.querySelectorAll('div.garage');
+        // const divIds = [];
+        // allDivGarage.forEach(div => divIds.push(div.id));
+        
         User.all.forEach(user =>{
-        const div = document.createElement("div")
-        const h3 = document.createElement("h3") 
-        const garageBtn = document.createElement('button')
+            // let result = divIds.find(id => id == user.id)
+            // if(result === undefined ){ 
+            const div = document.createElement("div")
+            const h3 = document.createElement("h3") 
+            const garageBtn = document.createElement('button')
 
-        garageBtn.innerText = 'View My Garage'
-        garageBtn.setAttribute('value', `${user.id}`)
-        garageBtn.addEventListener('click', e=> {
-            e.preventDefault()
-            loadGarage(e)
-        })
-        
-        div.setAttribute("class", "garage")
+            garageBtn.innerText = 'View My Garage'
+            garageBtn.setAttribute('value', `${user.id}`)
+            garageBtn.addEventListener('click', e=> {
+                e.preventDefault()
+                loadGarage(e)
+            })
+            
+            div.setAttribute("class", "garage")
+            div.setAttribute('id', user.id)
 
-        h3.innerText = `${user.username}'s Garage`
-        h3.setAttribute('id', user.id)
+            h3.innerText = `${user.username}'s Garage`
+            // h3.setAttribute('id', user.id)
+            
+            div.appendChild(h3)
+            div.appendChild(garageBtn)
+            mainHTML.appendChild(div)
 
-        
-        div.appendChild(h3)
-        div.appendChild(garageBtn)
-        mainHTML.appendChild(div)
-
-        user.renderCars()
-        })
+            user.renderCars()
+        // } else {
+        //     user.renderCars()
+        // }
+            })
     }
 
     renderCars(){
@@ -59,10 +68,7 @@ class User {
             
             h3.appendChild(ul)
 
-        } )
-
-
-        
+        } )    
     }
 
     static loadUsers(){
@@ -73,6 +79,49 @@ class User {
         }) 
     }
 
+    static renderCarForm(){
+
+        // let users = [] 
+
+        // API.getUsers()
+        // .then(json => json.forEach(user =>{
+        //     users.push(user)
+        // }) ) 
+    
+        const newUserForm = document.getElementById('new-user-form')
+        newUserForm.innerHTML = ""
+        
+        const h2 = document.querySelector('h2')
+        h2.innerText = "Please Fill in the Form Below!"
+    
+        mainHTML.innerHTML = `<form id="new-car">
+        <label for="users"> Select the user you'd like to add a car to: </label>
+        <select name="users" id="select-users-id">
+        ${User.all.map(user => `<option value=${user.id}> ${user.username} </option>`)}
+        </select>
+        <br></br>
+        <label for="year">Year: </label>
+        <input type="text" id="year" name="year"></input>
+        <br></br>
+        <label for="make">Make: </label>
+        <input type="text" id="make" name="make"></input>
+        <br></br>
+        <label for="model">Model: </label>
+        <input type="text" id="model" name="model"></input>
+        <br></br>
+        <label for="trim">Trim: </label>
+        <input type="text" id="trim" name="trim"></input>
+        <br></br>
+        <input type="submit" name="submit" value="Add New Car" class="submit">
+        </form>`
+    
+        const newCarForm = document.getElementById('new-car')
+        newCarForm.addEventListener('submit', e =>{
+            e.preventDefault()
+            createNewCar(e)
+        })
+
+    }
 
 }
 

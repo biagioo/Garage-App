@@ -1,6 +1,8 @@
                                                <!-- REVIEW OOJS CURIC -->
-OOJS 
-     - seperation of concerns for OOJS files, where to put what?
+OOJS bugs to fix 
+    - everytime "All Garages" is clicked, duplicates are made 
+    -
+    
 
 When does the user model need to be used?
     - Whenever we are creating a new user 

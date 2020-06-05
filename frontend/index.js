@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
 })
 
-
 const createNewCarBtn = () =>{
     const newCarBtn = document.createElement('button')
     const findAddCarBtn = document.getElementById("add-car-btn")
@@ -29,15 +28,12 @@ const createNewCarBtn = () =>{
     newCarBtn.innerText = "Add Car"
     newCarBtn.addEventListener('click', e =>{
             e.preventDefault()
-            renderCarForm()
+            User.renderCarForm()
         })
     btnsDiv.appendChild(newCarBtn)
     } 
 
 }
-
-
-
 
 // const getUsers = () => {
 //     fetch(usersUrl) 
@@ -184,48 +180,48 @@ const createUser = (e) => {
 
 
 
-const renderCarForm = () =>{
-    let users = [] 
+// const renderCarForm = () =>{
+//     let users = [] 
 
-    fetch(usersUrl) 
-    .then(resp => resp.json())
-    .then(json => json.forEach(user =>{
-        users.push(user)
-    }) ) 
+//     fetch(usersUrl) 
+//     .then(resp => resp.json())
+//     .then(json => json.forEach(user =>{
+//         users.push(user)
+//     }) ) 
 
-    const newUserForm = document.getElementById('new-user-form')
-    newUserForm.innerHTML = ""
+//     const newUserForm = document.getElementById('new-user-form')
+//     newUserForm.innerHTML = ""
     
-    const h2 = document.querySelector('h2')
-    h2.innerText = "Please Fill in the Form Below!"
+//     const h2 = document.querySelector('h2')
+//     h2.innerText = "Please Fill in the Form Below!"
 
-    mainHTML.innerHTML = `<form id="new-car">
-    <label for="users"> Select the user you'd like to add a car to: </label>
-    <select name="users" id="select-users-id">
-    ${users.map(user => `<option value=${user.id}> ${user.username} </option>`)}
-    </select>
-    <br></br>
-    <label for="year">Year: </label>
-    <input type="text" id="year" name="year"></input>
-    <br></br>
-    <label for="make">Make: </label>
-    <input type="text" id="make" name="make"></input>
-    <br></br>
-    <label for="model">Model: </label>
-    <input type="text" id="model" name="model"></input>
-    <br></br>
-    <label for="trim">Trim: </label>
-    <input type="text" id="trim" name="trim"></input>
-    <br></br>
-    <input type="submit" name="submit" value="Add New Car" class="submit">
-  </form>`
+//     mainHTML.innerHTML = `<form id="new-car">
+//     <label for="users"> Select the user you'd like to add a car to: </label>
+//     <select name="users" id="select-users-id">
+//     ${users.map(user => `<option value=${user.id}> ${user.username} </option>`)}
+//     </select>
+//     <br></br>
+//     <label for="year">Year: </label>
+//     <input type="text" id="year" name="year"></input>
+//     <br></br>
+//     <label for="make">Make: </label>
+//     <input type="text" id="make" name="make"></input>
+//     <br></br>
+//     <label for="model">Model: </label>
+//     <input type="text" id="model" name="model"></input>
+//     <br></br>
+//     <label for="trim">Trim: </label>
+//     <input type="text" id="trim" name="trim"></input>
+//     <br></br>
+//     <input type="submit" name="submit" value="Add New Car" class="submit">
+//   </form>`
 
-    const newCarForm = document.getElementById('new-car')
-    newCarForm.addEventListener('submit', e =>{
-        e.preventDefault()
-        createNewCar(e)
-    })
-}
+//     const newCarForm = document.getElementById('new-car')
+//     newCarForm.addEventListener('submit', e =>{
+//         e.preventDefault()
+//         createNewCar(e)
+//     })
+// }
 
 
 const createNewCar = e =>{
