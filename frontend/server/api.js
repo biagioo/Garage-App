@@ -52,29 +52,36 @@ class API {
         })
         .then(resp => resp.json())
         .then(data =>{
-            // debugger
+            
             mainHTML.innerHTML = ''
             User.loadUsers()
         })
-        // 
-        // User.loadUsers()
-        // .then(userObj => renderUser(userObj))
     }
 
-    static loadUserGarage(e){
-        
-        fetch(`http://localhost:3000/users/${e.target.value}`) 
+    static loadUserGarage(id){
+        mainHTML.innerHTML= ''
+        fetch(`http://localhost:3000/users/${+id}`) 
         .then(resp => resp.json())
         .then(user => {
-            // debugger
-            let newUser = User.all.find(userObj =>userObj.id == user.id)
+            let newUser = User.all.find(userObj => userObj.id == user.id)
             newUser.renderGarage()
         }) 
 
     }
     
 
+    static deleteCar(id){
+        
+        
+        fetch(carsUrl + `/${id}`, {
+            method: 'DELETE'
+        })
+        .then(resp => resp.json())
+        .then((data) => {})
+        alert("Car Removal Successful")
+        
 
+    }
 
 
 

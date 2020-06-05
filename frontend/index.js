@@ -102,44 +102,44 @@ const createNewUserForm = () => {
 //     }) 
 // }
 
-const renderGarage = userObj => {
-    mainHTML.innerHTML =''
+// const renderGarage = userObj => {
+//     mainHTML.innerHTML =''
 
-    const h3 = document.createElement('h3')
-    h3.setAttribute('id', userObj.id)
-    h3.innerText = `${userObj.username}'s Garage`
+//     const h3 = document.createElement('h3')
+//     h3.setAttribute('id', userObj.id)
+//     h3.innerText = `${userObj.username}'s Garage`
 
-    mainHTML.appendChild(h3)
+//     mainHTML.appendChild(h3)
     
-    userObj.cars.map(car => {
-      let dltBtn = document.createElement('button')
-      dltBtn.innerText = "Delete Car"
-      dltBtn.setAttribute('value', `${car.id}`)  
-      dltBtn.addEventListener('click', e => {
-        e.preventDefault()
-        deleteCar(e.target.value)    
-      })
-      h3.appendChild(dltBtn)
+//     userObj.cars.map(car => {
+//       let dltBtn = document.createElement('button')
+//       dltBtn.innerText = "Delete Car"
+//       dltBtn.setAttribute('value', `${car.id}`)  
+//       dltBtn.addEventListener('click', e => {
+//         e.preventDefault()
+//         deleteCar(e.target.value)    
+//       })
+//       h3.appendChild(dltBtn)
 
-      renderCars(car)
-    })
-}
+//       renderCars(car)
+//     })
+// }
 
-const deleteCar = id =>{
-    fetch(carsUrl + `/${id}`, {
-        method: 'DELETE'
-    })
-    .then(resp => resp.json())
-    .then((data) => {
-        if (!data.errors){
-            renderGarage(data)
-            window.alert("Car Removal Successful")
+// const deleteCar = id =>{
+//     fetch(carsUrl + `/${id}`, {
+//         method: 'DELETE'
+//     })
+//     .then(resp => resp.json())
+//     .then((data) => {
+//         if (!data.errors){
+//             renderGarage(data)
+//             window.alert("Car Removal Successful")
 
-        }else{
-            throw new Error(`${data.errors}`)
-        }
-    }
-)}
+//         }else{
+//             throw new Error(`${data.errors}`)
+//         }
+//     }
+// )}
 
 // const renderCars = (car) => {
 //     const h3 = document.getElementById(`${car.user_id}`)

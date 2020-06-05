@@ -29,7 +29,7 @@ class User {
             garageBtn.setAttribute('value', `${user.id}`)
             garageBtn.addEventListener('click', e=> {
                 e.preventDefault()
-                API.loadUserGarage(e)
+                API.loadUserGarage(e.target.value)
             })
             
             div.setAttribute("class", "garage")
@@ -61,6 +61,7 @@ class User {
             liModel.innerText = `Model: ${car.model}`
             liYear.innerText = `Year: ${car.year}`
             liTrim.innerText = `Trim: ${car.trim}`
+            liTrim.setAttribute('id', car.id)
             
             ul.appendChild(liYear)
             ul.appendChild(liMake)
@@ -149,7 +150,6 @@ class User {
     }
 
     renderGarage(){
-        
         mainHTML.innerHTML = ''
 
         const h3 = document.createElement('h3')
@@ -158,20 +158,26 @@ class User {
     
         mainHTML.appendChild(h3)
         
+        this.renderCars()
+
        this.cars.map(car => {
           let dltBtn = document.createElement('button')
           dltBtn.innerText = "Delete Car"
           dltBtn.setAttribute('value', `${car.id}`)  
           dltBtn.addEventListener('click', e => {
             e.preventDefault()
-            deleteCar(e.target.value)    
+            let id = e.target.value
+            let deletedCar = document.getElementById(id)
+            
+            API.deleteCar(id)
+            deletedCar.innerHTML = ''    
           })
-          h3.appendChild(dltBtn)
+          let liTrim = document.getElementById(car.id)
+          liTrim.appendChild(dltBtn)
     
-        //   renderCars(car)
         })
 
-        this.renderCars()
+        
 
     }
 
