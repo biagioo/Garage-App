@@ -155,6 +155,16 @@ class User {
         const h3 = document.createElement('h3')
         h3.setAttribute('id',this.id)
         h3.innerText = `${this.username}'s Garage`
+       
+        const userDeleteButton = document.createElement('button')
+        userDeleteButton.setAttribute('value', this.id)
+        userDeleteButton.innerText = `Delete ${this.username}`
+        userDeleteButton.addEventListener('click', e=> {
+            e.preventDefault()
+            API.deleteUser(e.target.value)
+        })
+
+        h3.appendChild(userDeleteButton)
     
         mainHTML.appendChild(h3)
         

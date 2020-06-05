@@ -5,10 +5,10 @@ class CarsController < ApplicationController
         render json: cars 
     end
 
-    def show
-        car = Car.find_by(id: params[:id])
-        render json: car
-    end
+    # def show
+    #     car = Car.find_by(id: params[:id])
+    #     render json: car
+    # end
 
     def create
         user = User.find_by(id: car_params[:user_id])
@@ -24,9 +24,8 @@ class CarsController < ApplicationController
 
     def destroy
         car = Car.find_by(id: params[:id])
-        user = car.user
         car.destroy
-        render json: user
+        render json: {message: "Car Removal Successful"}
     end
 
     private

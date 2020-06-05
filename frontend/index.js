@@ -9,16 +9,19 @@ const bodyHeaderH2 = document.querySelector('h2')
 document.addEventListener("DOMContentLoaded", () => {
      allGaragesBtn.addEventListener('click', e =>{
         e.preventDefault()
-        mainHTML.innerHTML = ''
-        bodyHeaderH2.innerText = 'Here are All Current Garages'
-        User.loadUsers()
-        createNewCarBtn()
-        createNewUserForm()
-        
+        fakePageReload() 
     })
   
     
 })
+
+const fakePageReload =() =>{
+    mainHTML.innerHTML = ''
+    bodyHeaderH2.innerText = 'Here are All Current Garages'
+    User.loadUsers()
+    createNewCarBtn()
+    createNewUserForm()
+}
 
 const createNewCarBtn = () =>{
     const newCarBtn = document.createElement('button')
@@ -35,18 +38,6 @@ const createNewCarBtn = () =>{
     } 
 
 }
-
-// const getUsers = () => {
-//     fetch(usersUrl) 
-//     .then(resp => resp.json())
-//     .then(json => { 
-//         json.forEach(user => renderUser(user)
-//         ) 
-//         // users = json
-//         createNewUserForm()
-//     }
-//     ) 
-// }
 
 const createNewUserForm = () => {
     const div = document.getElementById('new-user-form')

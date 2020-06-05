@@ -75,11 +75,20 @@ class API {
             method: 'DELETE'
         })
         .then(resp => resp.json())
-        .then((data) => {})
-        alert("Car Removal Successful")
+        .then((data) => alert(data.message))
+        
     }
 
-
+    static deleteUser(id){
+        fetch(usersUrl + `/${id}`, {
+            method: 'DELETE'
+        })
+        .then(resp => resp.json())
+        .then((data) => {
+            alert(data.message)
+            fakePageReload()
+        })
+    }
 
 
 
