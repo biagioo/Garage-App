@@ -5,21 +5,11 @@ class CarsController < ApplicationController
         render json: cars 
     end
 
-    # def show
-    #     car = Car.find_by(id: params[:id])
-    #     render json: car
-    # end
-
     def create
         user = User.find_by(id: car_params[:user_id])
-        if user
-            new_car = user.cars.new(car_params)
-            new_car.save
-            render json: new_car
-            
-        else 
-            render json: {errors: user.errors.full_messages}
-        end
+        new_car = user.cars.new(car_params)
+        new_car.save
+        render json: new_car
     end
 
     def destroy
@@ -33,4 +23,6 @@ class CarsController < ApplicationController
     def car_params 
         params.require(:car).permit(:year, :make, :model, :trim, :user_id)
     end
+
+    
 end
