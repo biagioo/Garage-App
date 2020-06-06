@@ -8,9 +8,9 @@
 ----Backend
     [x]Controllers
     [x]routes
-    []test
-    []views
-    []any files/folders not being used
+    [x]test
+    [x]views
+    [X]any files/folders not being used
 
 ----Frontend
     []user.js (function names more understandable)

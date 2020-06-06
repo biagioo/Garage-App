@@ -1,8 +1,4 @@
 class API {
-    // const baseUrl =  "http://localhost:3000"
-    // const carsUrl = `${baseUrl}/cars`
-    // const usersUrl = `${baseUrl}/users`
-
     static options = {
         headers: {
         'Content-Type': 'application/json',
@@ -12,7 +8,7 @@ class API {
 
     static getUsers(){
         return(
-        fetch("http://localhost:3000/users")
+        fetch(usersUrl) 
         .then(resp => resp.json())
         )
     }
@@ -27,7 +23,7 @@ class API {
             trim: e.target.trim.value
         }
 
-        fetch("http://localhost:3000/cars", {
+        fetch(carsUrl, {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json'
@@ -54,13 +50,13 @@ class API {
         .then(data =>{
             mainHTML.innerHTML = ''
             User.loadUsers()
-            alert("User Creation Successful")
+            alert(data.message)
         })
     }
 
     static loadUserGarage(id){
         mainHTML.innerHTML= ''
-        fetch(`http://localhost:3000/users/${+id}`) 
+        fetch(`${usersUrl}/${+id}`) 
         .then(resp => resp.json())
         .then(user => {
             let newUser = User.all.find(userObj => userObj.id == user.id)
@@ -80,7 +76,7 @@ class API {
     }
 
     static deleteUser(id){
-        fetch(`http://localhost:3000/users//${id}`, {
+        fetch(`${usersUrl}/${id}`, {
             method: 'DELETE'
         })
         .then(resp => resp.json())

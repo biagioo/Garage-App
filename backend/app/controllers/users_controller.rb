@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
     def create 
         user = User.create(user_params)
-        render json: user
+        render json: {message: "User Creation Successful"}
     end
 
     def destroy
