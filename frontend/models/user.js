@@ -1,10 +1,11 @@
 class User {
-   static all = []
+   
+    static all = []
    
     constructor(user){
         this.username = user.username
         this.id = user.id
-        this.cars = user.cars // cars array for each user
+        this.cars = user.cars 
         User.all.push(this)
     }
 
@@ -42,7 +43,7 @@ class User {
             mainHTML.appendChild(div)
 
             user.renderCars()
-            })
+        })
     }
 
     renderCars(){
@@ -124,7 +125,6 @@ class User {
     
         mainHTML.appendChild(h3)
         
-            
         const ul = document.createElement("ul")  
         const liMake = document.createElement('li')
         const liModel = document.createElement('li')
@@ -186,8 +186,6 @@ class User {
           liTrim.appendChild(dltBtn)
     
         })
-
-        
 
     }
 

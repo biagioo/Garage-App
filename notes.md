@@ -14,9 +14,9 @@
 
 ----Frontend
     []user.js (function names more understandable)
-    []API.js (urls)
-    []index.js
-    []index.html
+    [x]API.js (urls)
+    [x]index.js
+    [x]index.html
   
 
 
