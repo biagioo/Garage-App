@@ -6,6 +6,59 @@ const btnsDiv = document.getElementById("buttons")
 const allGaragesBtn = document.getElementById("all-garages-btn")
 const bodyHeaderH2 = document.querySelector('h2') 
 
+const sortBtn = document.createElement('button')
+
+sortBtn.innerHTML ='Sort'
+sortBtn.addEventListener('click', e =>{
+    e.preventDefault()
+    mainHTML.innerHTML = ''
+    renderSortedUser()
+
+})
+const renderSortedUser = () =>{
+    sortUsers().forEach(user =>{
+
+        const div = document.createElement("div")
+        const h3 = document.createElement("h3") 
+        const garageBtn = document.createElement('button')
+       
+
+        garageBtn.innerText = 'View My Garage'
+        garageBtn.setAttribute('value', `${user.id}`)
+        garageBtn.addEventListener('click', e=> {
+            e.preventDefault()
+            API.loadUserGarage(e.target.value)
+        })
+        
+        div.setAttribute("class", "garage")
+        div.setAttribute('id', user.id)
+
+        h3.innerText = `${user.username}'s Garage`
+
+        div.appendChild(h3)
+        div.appendChild(garageBtn)
+        // div.appendChild(sortBtn)
+        mainHTML.appendChild(div)
+
+        user.renderCars()
+    })
+}
+
+const sortUsers = () => {
+    let newUserArr = []
+
+    User.all.map(user => newUserArr.push(user))
+    return newUserArr.sort(function(a,b) {
+        var nameA = a.username.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.username.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }      
+    })
+}
 document.addEventListener("DOMContentLoaded", () => {
      allGaragesBtn.addEventListener('click', e =>{
         e.preventDefault()
@@ -19,6 +72,7 @@ const fakePageReload =() =>{
     User.loadUsers()
     createNewCarBtn()
     createNewUserForm()
+    mainHTML.appendChild(sortBtn)
 }
 
 const createNewCarBtn = () =>{

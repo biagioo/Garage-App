@@ -18,6 +18,10 @@ class User {
         }) 
     }
 
+    static sortUsers(){
+
+    }
+
     static renderUsers(){
 
         User.all.forEach(user =>{
@@ -25,6 +29,7 @@ class User {
             const div = document.createElement("div")
             const h3 = document.createElement("h3") 
             const garageBtn = document.createElement('button')
+           
 
             garageBtn.innerText = 'View My Garage'
             garageBtn.setAttribute('value', `${user.id}`)
@@ -40,6 +45,7 @@ class User {
 
             div.appendChild(h3)
             div.appendChild(garageBtn)
+            // div.appendChild(sortBtn)
             mainHTML.appendChild(div)
 
             user.renderCars()
@@ -188,31 +194,6 @@ class User {
         })
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
