@@ -1,10 +1,27 @@
-# Garage-App
-Welcome to the the Garage app! 
+# Welcome to the Garage-App!
 
-Here is a video demo of the app in use https://drive.google.com/file/d/1KNYYguxU3RNTwNaokVVEM8YjaFLOkR8y/view?usp=sharing
+Watch the demo [video](https://drive.google.com/file/d/1KNYYguxU3RNTwNaokVVEM8YjaFLOkR8y/view?usp=sharing) or (read)[https://dev.to/mindful_developer/javascript-project-icd] about it.
 
-This app lets people keep show what cars are in there Garage! You can create a user/delete a user as well as create/delete cars in a users garage! 
+## Functionality
 
-To get this app running, fork and clone this repository and be sure to run bundle install.
-After that, open index.HTML in your web browser, and start the backend rails server.
-I hope you enjoy!
+This app lets people keep show what cars are in there Garage. You can create a user/delete a user as well as create/delete cars in a users garage.  
+
+## Installation
+
+To get this app running:
+ - clone this repository 
+ - cd into the repo
+
+### Backend
+
+- CD into 'backend'
+- run 'bundle install'
+
+## Run the application
+
+- CD into 'backend'
+- run 'rails s'
+- open the index.html in the web browser
+ 
+ 
+ 
