@@ -14,7 +14,14 @@ body {
   background: -moz-linear-gradient(top, #8CA49B 0%, #CBC36A 50%, #755C31 100%);
   background: -webkit-linear-gradient(top, #8CA49B 0%, #CBC36A 50%, #755C31 100%);
   background: linear-gradient(to bottom, #8CA49B 0%, #CBC36A 50%, #755C31 100%);
+  min-height: 1000px;
+  text-align: center;
   }
+
+  ul {
+    text-align: center;
+    list-style-position: inside;
+}
 `;
 document.head.appendChild(style);
 
