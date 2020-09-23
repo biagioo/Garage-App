@@ -5,10 +5,20 @@ const mainHTML = document.querySelector('main');
 const btnsDiv = document.getElementById('buttons');
 const allGaragesBtn = document.getElementById('all-garages-btn');
 const bodyHeaderH2 = document.querySelector('h2');
-
 const sortBtn = document.createElement('button');
 
-sortBtn.innerHTML = 'Sort';
+var style = document.createElement('style');
+style.innerHTML = `
+body {
+  background: #8CA49B;
+  background: -moz-linear-gradient(top, #8CA49B 0%, #CBC36A 50%, #755C31 100%);
+  background: -webkit-linear-gradient(top, #8CA49B 0%, #CBC36A 50%, #755C31 100%);
+  background: linear-gradient(to bottom, #8CA49B 0%, #CBC36A 50%, #755C31 100%);
+  }
+`;
+document.head.appendChild(style);
+
+sortBtn.innerHTML = 'Sort Garages Z-A';
 sortBtn.addEventListener('click', (e) => {
   e.preventDefault();
   mainHTML.innerHTML = '';
